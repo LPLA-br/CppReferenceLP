@@ -12,6 +12,16 @@
 
 //---------CLASSE Retangulo-----------//
 
+/* Note como this pode ser usado para resolver conflito
+ * de escopo entre uma variável local da função membro e
+ * variável membro da classe:
+   Person::Person()
+   {
+	int idade;
+	this->idade = 1;
+   }
+*/
+
 //construtor default abaixo
 /* A inicialização, após os dois pontos, deve seguir
  * a mesma ordem das variavéis membro da classe.*/
