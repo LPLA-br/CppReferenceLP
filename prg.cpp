@@ -25,7 +25,7 @@
 //construtor default abaixo
 /* A inicialização, após os dois pontos, deve seguir
  * a mesma ordem das variavéis membro da classe.*/
-Retangulo::Retangulo() : pi(3.14), area(0), id(new char[10]), largura(0), cumprimento(0)
+Retangulo::Retangulo() : pi(3.14), area(0), id(new char[10]), largura(0), comprimento(0)
 {
 	std::strcpy(this->id, "padrão");
 }
@@ -34,7 +34,7 @@ Retangulo::Retangulo(int Cump, int Lar, const char *Id) : pi(3.14), area(0)
 {
 	/*matenha os nome dos parâmetros com nomes
 	 *diferentes das var membros.*/
-	cumprimento = Cump;
+	comprimento = Cump;
 	largura = Lar;
 	this->id = new char[std::strlen(Id) + 1];
 	std::strcpy( this->id, Id); //this. ou this->
@@ -46,12 +46,12 @@ Retangulo::~Retangulo()
 }
 int Retangulo::obterAtualizarArea(void)
 {
-	this->area = (cumprimento*largura);
+	this->area = (comprimento*largura);
 	return this->area;
 }
 void Retangulo::aumentarAltura(int novo)
 {
-	cumprimento += novo;
+	comprimento += novo;
 }
 void Retangulo::aumentarLargura(int novo)
 {
@@ -59,7 +59,7 @@ void Retangulo::aumentarLargura(int novo)
 }
 void Retangulo::diminuirAltura(int novo)
 {
-	cumprimento -= novo;
+	comprimento -= novo;
 }
 void Retangulo::diminuirLargura(int novo)
 {
@@ -67,7 +67,7 @@ void Retangulo::diminuirLargura(int novo)
 }
 void Retangulo::output(void)
 {
-	std::cout << " cumprimento " << cumprimento << " largura " << largura << '\n';
+	std::cout << " comprimento " << comprimento << " largura " << largura << '\n';
 	std::cout << " area " << area << '\n';
 	std::cout << " id " << id << '\n';
 }
@@ -139,7 +139,7 @@ Casa::Casa(int Alt, int Cump, int Lar, const char *Id) : Retangulo(Cump, Lar, Id
 //POLIMORFISMO override da função virtual output da classe Retangulo.
 void Casa::output(void)
 {	
-	std::cout << " cumprimento " << cumprimento << " largura " << largura << '\n';
+	std::cout << " comprimento " << comprimento << " largura " << largura << '\n';
 	std::cout << "altura " << altura;
 	std::cout << " id" << id << '\n';
 }

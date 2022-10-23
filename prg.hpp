@@ -27,7 +27,7 @@ class Retangulo
 
 		char *id;
 		int largura;
-		int cumprimento;
+		int comprimento;
 
 	public: //Acessível em todo programa.
 
