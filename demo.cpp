@@ -5,7 +5,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
-#include "prg.hpp"
+#include <string>
+#include "lib.hpp"
 
 /* Compilação e linkedição desta referência:
  * g++ -Wall -Wextra teste.cpp prg.cpp -o teste */
@@ -13,7 +14,10 @@
 /*Em C++, Ao contrário de C, protótipos de
 funções não são necessários.*/
 
-//Sobrecarga de funções.
+/* SOBRECARGA DE FUNÇÃO
+ * Uma função pode ser sobrecarregada
+ * como na demostração abaixo.*/
+
 int divisao(int a, int b)
 {
 	return (a/b);
@@ -24,7 +28,17 @@ float divisao(float a, float b)
 	return (a/b);
 }
 
-//Função com template
+short divisao(short a, short b)
+{
+	return (a/b);
+}
+
+// TEMPLATES e funções (pode ser em func. membros)
+/* Torna possível a escrita de uma função
+ * capaz de lidar com vários tipos de dados
+ * (incluindo dados definidos pelo programador
+ * em classes).
+ */
 
 template <class Tipo>
 Tipo somaDinamica(Tipo a, Tipo b)
@@ -72,10 +86,25 @@ int main(int argc, char *argv[])
 	std::cout << divisao(aa, bb) << '\n';
 	std::cout << "\n\n";
 
-	//template
+	//template funções e classes.
 	std::cout << "\n\nTemplate\n";
-	std::cout << somaDinamica<float>(a, aa) << '\n';
-	std::cout << somaDinamica<unsigned short>(a, b) << '\n';
+
+	float retval1 = somaDinamica<float>(a, aa);
+	unsigned short retval2 = somaDinamica<unsigned short>(a, b);
+	std::string retval3 = somaDinamica<std::string>("segmentation ","fault TROlmao");
+
+	std::cout << retval1 << '\n';
+	std::cout << retval2 << '\n';
+	std::cout << retval3 << '\n';
+
+	//template na classe exemplo "Matriz"
+	Matriz<int,5> mat;
+	std::cout << mat.mostrarTamanho();
+	Matriz<unsigned short, 10> mat2;
+	std::cout << mat2.mostrarTamanho();
+	Matriz<std::string, 50> mat3;
+	std::cout << mat3.mostrarTamanho();
+
 	std::cout << "\n\n";
 
 	//OBJETOS
@@ -109,6 +138,14 @@ int main(int argc, char *argv[])
 	std::cout << "\n\nCasa\n";
 	Casa pocilga(2, 10, 10, "777");
 	pocilga.output();
+	std::cout << "\n\n";
+
+	//sobrecarga de operador
+	std::cout << "\n\nSobrecarga\n";
+	Sobrecarga teste(10);
+	teste.show();
+	++teste;
+	teste.show();
 	std::cout << "\n\n";
 
 	//Namespace

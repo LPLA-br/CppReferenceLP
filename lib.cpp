@@ -8,13 +8,14 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
-#include "prg.hpp"
+#include "lib.hpp"
 
 //---------CLASSE Retangulo-----------//
 
-/* Note como this pode ser usado para resolver conflito
- * de escopo entre uma variável local da função membro e
- * variável membro da classe:
+/* THIS
+ * this pode ser usado para resolver conflito
+ * de escopo entre uma variável local da função
+ * membro e variável membro da classe:
    Person::Person()
    {
 	int idade;
@@ -22,14 +23,15 @@
    }
 */
 
-//construtor default abaixo
-/* A inicialização, após os dois pontos, deve seguir
+// CONSTRUTOR DEFAULT abaixo
+/* ATENÇÃO A inicialização, após os dois pontos, deve seguir
  * a mesma ordem das variavéis membro da classe.*/
 Retangulo::Retangulo() : pi(3.14), area(0), id(new char[10]), largura(0), comprimento(0)
 {
 	std::strcpy(this->id, "padrão");
 }
-//sobrecarga do construtor.
+
+//sobrecarga da fução construtora
 Retangulo::Retangulo(int Cump, int Lar, const char *Id) : pi(3.14), area(0)
 {
 	/*matenha os nome dos parâmetros com nomes
@@ -39,32 +41,39 @@ Retangulo::Retangulo(int Cump, int Lar, const char *Id) : pi(3.14), area(0)
 	this->id = new char[std::strlen(Id) + 1];
 	std::strcpy( this->id, Id); //this. ou this->
 }
+
 //destrutor para desalocar variáveis alocadas.
 Retangulo::~Retangulo()
 {
 	delete[] id;
 }
+
 int Retangulo::obterAtualizarArea(void)
 {
 	this->area = (comprimento*largura);
 	return this->area;
 }
+
 void Retangulo::aumentarAltura(int novo)
 {
 	comprimento += novo;
 }
+
 void Retangulo::aumentarLargura(int novo)
 {
 	largura += novo;
 }
+
 void Retangulo::diminuirAltura(int novo)
 {
 	comprimento -= novo;
 }
+
 void Retangulo::diminuirLargura(int novo)
 {
 	largura -= novo;
 }
+
 void Retangulo::output(void)
 {
 	std::cout << " comprimento " << comprimento << " largura " << largura << '\n';
@@ -143,4 +152,36 @@ void Casa::output(void)
 	std::cout << "altura " << altura;
 	std::cout << " id" << id << '\n';
 }
+
+/*---------CLASSE Teste de sobrecarga---------*/
+
+Sobrecarga::Sobrecarga() : valor(new unsigned)
+{
+	*valor = 10;
+}
+
+Sobrecarga::Sobrecarga(unsigned Val) : valor(new unsigned)
+{
+	*valor = Val;
+}
+
+Sobrecarga::~Sobrecarga()
+{
+	delete valor;
+}
+
+void Sobrecarga::show(void)
+{
+	std::cout << *valor;
+}
+
+//sobrecarga do operador ++
+void Sobrecarga::operator++(void)
+{
+	for(unsigned short i = 0; i < 10; ++i)
+	{
+		++(*valor);
+	}
+}
+
 

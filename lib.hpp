@@ -1,8 +1,10 @@
 #ifndef PRG_HPP_INCLUDED
 #define PRG_HPP_INCLUDED
 
-/*no header: structs, unions, classes, enumerações, defines
- *e campo_de_bits*/
+/* no header: structs,
+ * unions, classes, enumerações, defines
+ * e campo_de_bits
+ * */
 
 /* Em C++ não existem
  * atributos e métodos
@@ -11,12 +13,12 @@
 
 class Retangulo
 {
-	/*Dados de classe devem
-	 *ser modificados externamente
-	 *pelas funções membro públicas.
-	 *Funções membro privadas só
-	 *podem ser usadas por funções
-	 *membro publicas. ENCAPSULAMENTO*/
+	/* Dados de classe devem
+	 * ser modificados externamente
+	 * pelas funções membro públicas.
+	 * Funções membro privadas só
+	 * podem ser usadas por funções
+	 * membro publicas. ENCAPSULAMENTO*/
 
 	private: //Visível apenas por esta Classe.
 
@@ -54,25 +56,24 @@ class Teste
 		int *a;
 		int b;
 
-		/*Se a classe é instânciada como objeto
-		 *constante então a variável membro
-		 *abaixo será mutável e legível/modificável
-		 apenas por funções com a keyword const*/
+		/* MUTABLE
+		 * Se uma classe é instânciada como objeto
+		 * constante então a variável membro
+		 * abaixo será mutável e legível
+		 * apenas por funções com a keyword const*/
 		mutable int c;
 	public:
-		Teste(); //default
+		Teste();
 		Teste(int, int, int);
-		/*destrutor é necessário apenas quando
-		 *houver alocação de memória*/
 		~Teste();
-
 		void printNaoConst(void); //não funcionará em objetos const
 		void print(void) const;
 		void modificarC(int val) const;
 
-		/*função virtual que pode ser substituida
-		 *assumindo ações diferenciadas
-		 *na classe derivada. POLIMORFISMO*/
+		/* VIRTUAL → OVERRIDE
+		 * função virtual que pode ser substituida
+		 * assumindo ações diferenciadas
+		 * na classe derivada. POLIMORFISMO*/
 		virtual void polimorfo();
 };
 
@@ -91,6 +92,42 @@ class Casa : public Retangulo
 		Casa(int Alt);
 		Casa(int Alt, int Cump, int Lar, const char *Id);
 		void output(void) override;
+};
+
+/* OPERATOR
+ * Sobrecarga de operadores.
+ **/
+class Sobrecarga
+{
+	private:
+	unsigned *valor;
+	
+	protected:
+	
+	public:
+	Sobrecarga();
+	Sobrecarga(unsigned Val);
+	~Sobrecarga();
+	void show(void);
+	void operator ++(void);
+};
+
+/*TEMPLATES e classes*/
+/* templates torna possível
+ * uma espécie de "simulação
+ * de tipagem dinâmica".
+ * Os alvos de template só
+ * existem se chamados.
+ * */
+
+template<typename T, int N>
+class Matriz
+{
+	private:
+		T m_matriz[N];
+	public:
+		//função INLINE da classe.
+		int mostrarTamanho() const { return N; }
 };
 
 #endif //PRG_HPP_INCLUDED
