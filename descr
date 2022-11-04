@@ -47,6 +47,7 @@ STATIC - variável membro igual para todas as instâncias.
 
 CONST - funções membro constantes não podem modificar varíaveis membro. Exceto se a
 	variável membro for MUTABLE
+	faz método público ser capaz de mudar variável membro private.
 
 PUBLIC - acessível pelas classes derivadas e em qualquer lugar do programa.
 PROTECTED - acessível pelas classes derivadas e funções membro internas.
@@ -72,6 +73,9 @@ SOBRECARGA DE OPERADORES BINÁRIOS
 	classe) sempre necessita de um argumento
 	a menos do que o número de operandos do
 	operador.
+	Resumo: método que recebe uma Classe A nos parâmetros
+	Instância uma classe RETORNO local.
+	elementos de RETORNO local = varíaveis_membro + A forasteiro
 
 
 demo.cpp----------Descrição---------

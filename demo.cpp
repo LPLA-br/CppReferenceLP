@@ -5,8 +5,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
-#include <string>
-#include <string.h>
 #include "lib.hpp"
 
 
@@ -80,7 +78,7 @@ namespace espaco
 int main(int argc, char* argv[])
 {
 
-	if(argc < 2)
+	if(argc <= 1)
 	{
 		char str[10];
 		std::cout << "\nInput < 10: ";
@@ -94,28 +92,37 @@ int main(int argc, char* argv[])
 		case 1:
 			break;
 		case 2:
-			if( !strcmp("--sobrecarga",argv[1]) )
+			if( !std::strcmp("--sobrecarga",argv[1]) )
 			{
-				SOBRECARGA::Coordenadas a(10, 10);
+				Coordenadas a(10, 10);
 				a.show();
 				++a;
 				a.show();
-				SOBRECARGA::Coordenadas b(0, 0);
-				b = --a;
-				b.show();
-				(--b).show();
+				
+				//malloc(): unaligned tcache chunk detected.
+				//Coordenadas b(2, 2);
+				//b = --a;
+				//b.show();
+				//(--b).show();
+
+				NoPointerCoordenadas c(6,6), d(6,6), Somas;
+				c = --d;
+				c.show();
+				(--d).show();
+
+				Somas = c + d;
+				Somas.show();
 			}
-			else if( !strcmp("--ponteiro",argv[1]) )
+			else if( !std::strcmp("--pnt-vs-ref",argv[1]) )
 			{
-				//vale a pena ver denovo.
+				unsigned valor = 1754;
+				unsigned* p1 = &valor;
+				std::cout << "valor: " << *p1 << "endereco: " << &p1 ;
 
-				char valor = 'a';
-				letraE( &valor );
-
-				const char** string;
-				const char matriz[10] = "shit\0";
+				char Valor = 'a';
+				letraE( &Valor );
 			}
-			else if( !strcmp("--tratamento-erro",argv[1]) )
+			else if( !std::strcmp("--tratamento-erro",argv[1]) )
 			{
 				try
 				{
@@ -133,22 +140,22 @@ int main(int argc, char* argv[])
 						std::cout << "\nNão existe pessoa com idade negativa ! exceçãoN:\n" << x << '\n';
 				}
 			}
-			else if( !strcmp("--namespace",argv[1]) )
+			else if( !std::strcmp("--namespace",argv[1]) )
 			{
 				espaco::verso::contagem(1, 10);
 				espaco::reverso::contagem(1, 10);
 				std::cout << "\n\n";
 			}
-			else if( !strcmp("--classes",argv[1]) )
+			else if( !std::strcmp("--classes",argv[1]) )
 			{
-				Retangulo ret(30, 20, "001");
-				Retangulo retDois;
-				const Retangulo retTres(25, 25, "002");
+				GEOMETRICOS::Retangulo ret(30, 20, "001");
+				GEOMETRICOS::Retangulo retDois;
+				const GEOMETRICOS::Retangulo retTres(25, 25, "002");
 
 				ret.aumentarAltura(20);
 				ret.obterAtualizarArea();
 
-				ret.obterLargAlt(retDois);
+				ret.obterLargAlt(&retDois);
 
 				retTres.aumentarAltura(1);
 				retTres.aumentarLargura(1);
@@ -158,12 +165,14 @@ int main(int argc, char* argv[])
 				//retTres.output();
 
 				std::cout << "\n\nCasa\n";
-				Casa pocilga(2, 10, 10, "777");
+				
+				GEOMETRICOS::Casa pocilga(2, 10, 10, "777");
 				pocilga.mudarAltura(15);
 				pocilga.output();
+				
 				std::cout << "\n\n";
 			}
-			else if( !strcmp("--sobrecarga-func",argv[1]) )
+			else if( !std::strcmp("--sobrecarga-func",argv[1]) )
 			{
 				int a=20, b=1;
 				float aa=200.30, bb=1.5;
@@ -175,10 +184,10 @@ int main(int argc, char* argv[])
 				std::cout << divisao(a, b) << '\n';
 				std::cout << divisao(aa, bb) << '\n';
 			}
-			else if( !strcmp("--templates-func",argv[1]) )
+			else if( !std::strcmp("--templates-func",argv[1]) )
 			{
 				int a=20, b=1;
-				float aa=200.30, bb=1.5;
+				float aa=200.30;
 				
 				float retval1 = somaDinamica<float>(a, aa);
 				unsigned short retval2 = somaDinamica<unsigned short>(a, b);
@@ -187,24 +196,26 @@ int main(int argc, char* argv[])
 				std::cout << retval1 << '\n';
 				std::cout << retval2 << '\n';
 				std::cout << retval3 << '\n';
+
 			}
-			else if( !strcmp("--templates-classes",argv[1]) )
+			else if( !std::strcmp("--templates-classes",argv[1]) )
 			{
-				std::cout << "\n\ntemplates e classes\n";
+
 				Matriz<int,5> mat;
-				std::cout << mat.mostrarTamanho();
+				std::cout << mat.mostrarTamanho() << "\n";
+
 				Matriz<unsigned short, 10> mat2;
-				std::cout << mat2.mostrarTamanho();
+				std::cout << mat2.mostrarTamanho() << "\n";
+
 				Matriz<std::string, 50> mat3;
-				std::cout << mat3.mostrarTamanho();
-				std::cout << "\n\n";
+				std::cout << mat3.mostrarTamanho() << "\n";
 			}
 			else
 			{
 				std::cout << "\nOpção desconhecida.\n";
 				std::cout << "OPCÕES:\n";
 				std::cout << "      --sobrecarga \n";
-				std::cout << "      --ponteiro\n";
+				std::cout << "      --pnt-vs-ref\n";
 				std::cout << "      --namespace\n";
 				std::cout << "      --classes\n";
 				std::cout << "      --sobrecarga-func\n";
