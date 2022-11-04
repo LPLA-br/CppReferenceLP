@@ -1,0 +1,122 @@
+-COMENTÁRIOS-
+
+lib.cpp----------Descrição---------
+
+inclusões de cabeçalhos devem ser iguais para cabeçalho .hpp
+e o .cpp com as definições de funções membro.
+
+ THIS
+ this pode ser usado para resolver conflito
+ de escopo entre uma variável local da função
+ membro e variável membro da classe:
+   Person::Person()
+   {
+	int idade;
+	this->idade = 1;
+   }
+
+COSTRUTOR DEFAULT - O contrutor padrão que inicializa (ou não) as variáveis membros.
+		    Um construtor com valores de paramêtro padrão torna-se default.
+
+SOBRECARGA DO CONSTRUTOR - Construtores alternativos que recebem parâmetros de inicialização.
+	Um parâmetro de construtor não precisa ser igual a o nome da variável membro.
+
+A inicialização em notação de : nome(valor) deve respeitar a ordem
+em que as variáveis membro foram definidas no cabeçalho hpp.
+
+DESTRUTOR - Desaloca memória de variáveis ponteiro alocadas.
+
+CONSTRUTORES DE DERIVADAS - Devem chamar os respectivos construtores das classes base.
+
+EXPLICIT - impede a conversão inplicita de tipo. Declarada apenas na classe.
+	   Exemplo: explicit int func(void);
+
+VIRTUAL   - função que assume formas diversas nas classes derivadas.
+OVERRRIDE - função que substitui a implentação da função virtual na classe base.
+
+lib.hpp----------Descrição---------
+
+no header: structs, unions, classes, enumerações, defines e campo_de_bits.
+
+ENCAPSULAMENTO - Dados devem ser modificados externamente por métodos públicos
+                 Funções membro privadas podem ser acessadas por funções membro publicas.
+		 Vide: classes de acesso
+
+STATIC - variável membro igual para todas as instâncias.
+	 Exemplo de uso: Contagem de instânciação de objetos. valor comun a vários objetos.
+
+CONST - funções membro constantes não podem modificar varíaveis membro. Exceto se a
+	variável membro for MUTABLE
+
+PUBLIC - acessível pelas classes derivadas e em qualquer lugar do programa.
+PROTECTED - acessível pelas classes derivadas e funções membro internas.
+PRIVATE - acessível apenas na classe e seu próprios métodos.
+
+INLINE:
+	função membro com {} bloco definido dentro de class, inline inplicito.
+	keyword inline para especificar fora da classe.
+
+HERANÇA:
+	Herdeira pública
+		.
+	Herdeira protegida
+		.
+	Herdeira privada
+		.
+
+OPERATOR - função membro operator para sobrecarregar um operador:
+	   Ex: Unário(--, ++), Binário(+,-,*,/ ...) 
+	   
+SOBRECARGA DE OPERADORES BINÁRIOS
+	Genericamente, a função operator(membro da
+	classe) sempre necessita de um argumento
+	a menos do que o número de operandos do
+	operador.
+
+
+demo.cpp----------Descrição---------
+
+Compilação e linkedição desta referência:
+g++ -Wall -Wextra teste.cpp prg.cpp -o teste
+
+Em C++, Ao contrário de C, protótipos de
+funções não são necessários.
+
+REGISTER indica ao compilador que se for possível, trabalhe
+com a váriavel em um dos registradores da cpu.
+
+INLINE
+função inline não é um salto para subrotina (no assembly) mas
+sim uma cópia do código onde ela for chamada. Mais veloz/ocupa memória
+Recomendado para pequenas funções.
+
+SOBRECARGA DE FUNÇÃO
+Uma função pode ser sobrecarregada, ou seja, nome igual mas número de parâmetros
+diferente.
+
+TEMPLATES e funções (pode ser em funções membros)
+Torna possível a escrita de uma função
+capaz de lidar com vários tipos de dados
+(incluindo dados definidos pelo programador
+em classes).
+
+NAMESPACE - Espaços de nomes capazes de isolar definições (mesmo as idênticas).
+using namespace - .
+
+MUTABLE/CONST (CLASSE) - objetos constantes podem chamar seus métodos com const para
+modificar a variável membro mutable.
+
+TRY, TROW, CATCH - tratamento de exessões lógicas.
+
+
+
+extra----------Descrição---------
+
+Classes podem ser passados nos parâmetros de funções
+(como ponteiros ou não) e funções membro (assim como os structs.)
+
+Pessoa funcao(Pessoa nome)
+{
+	return nome;
+}
+
