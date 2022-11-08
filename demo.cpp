@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
 	if(argc <= 1)
 	{
 		char str[10];
-		std::cout << "\nInput < 10: ";
+		std::cout << "\nstdin(0): ";
 		std::cin >> str;
 		std::cout << str;
 	}
