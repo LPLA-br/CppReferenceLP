@@ -293,14 +293,36 @@ modificar a variável membro mutable.
 TRY, TROW, CATCH - tratamento de exessões lógicas.
 
 
-
 extra----------Descrição---------
 
 Classes podem ser passados nos parâmetros de funções
-(como ponteiros ou não) e funções membro (assim como os structs.)
+(com ponteiros ou não) e funções membro (assim como os structs)
+	Pessoa funcao(Pessoa alpha)
+	{
+		return apha;
+	}
 
-Pessoa funcao(Pessoa nome)
-{
-	return nome;
-}
+Variáveis definidas em um switch case são visíveis
+para os demais cases. Use {} para imperdir isto.
+	case 2:
+		{
+			funcao(Pessoa alpha);
+		}
 
+Referências VS Ponteiros em funções
+
+	void funcaoA(Agiota* beta)
+	{
+		std::cout << beta->cobranca;
+	}
+	
+	void funcaoB(Agiota gama)
+	{
+		std::cout gama.cobranca;
+	}
+
+static_cast<tipo> (OBJETO)
+Pode fazer:
+	·converter um ponteiro de uma classe base para um ponteiro
+	 de uma classe não virtual (downcasting).
+	·converter tipos de dados numericos como enums, ints ou floats.
